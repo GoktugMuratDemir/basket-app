@@ -28,7 +28,10 @@ export default function ProductItem({ item }) {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => addItemToBasket(item.id)}
+          onClick={(event) => {
+            event.stopPropagation()
+            addItemToBasket(item.id)
+          } }
         >
           Add To Card
         </Button>
