@@ -2,12 +2,16 @@ import React from "react";
 import { useRenderBasket } from "../../../context/basket-context";
 import { Button, Paper, Stack, Typography } from "@mui/material";
 import { fTrCurrency } from "../../../utils/fTrCurrency";
+import { useSnackbar } from "notistack";
 
 export default function Checkout() {
   const { basketItems, totalBasketPrice } = useRenderBasket();
 
+  const { enqueueSnackbar } = useSnackbar();
+
   const handleCheckout = () => {
     localStorage.setItem("basketItems", JSON.stringify(basketItems));
+    enqueueSnackbar('İşlem Başarılı');
   };
 
   return (
