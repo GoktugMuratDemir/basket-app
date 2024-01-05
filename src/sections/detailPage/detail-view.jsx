@@ -32,7 +32,7 @@ export default function DetailView() {
           <Typography variant="h4">
             {fTrCurrency(parseFloat(selectedItem?.price))}
           </Typography>
-          <Button variant="text"   onClick={(event) => {
+          <Button variant="text"  onClick={(event) => {
             event.stopPropagation()
             addItemToBasket(selectedItem?.id)
           } }>

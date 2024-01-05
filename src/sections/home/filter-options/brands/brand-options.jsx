@@ -9,8 +9,9 @@ import { useRenderPagination } from "../../../../context/pagination-context";
 import { useRenderProductData } from "../../../../context/product-context";
 
 export default function BrandOptionsFilter() {
-  const { resDataAllProduct, setResDataAllFilterProduct } = useRenderProductData();
-  const { setCurrentPage } = useRenderPagination();
+  const { resDataAllProduct, setResDataAllFilterProduct } =
+    useRenderProductData();
+  const { setCurrentPage,scrollToTop } = useRenderPagination();
 
   const allBrands = _.uniq(resDataAllProduct?.map((item) => item.brand));
 
@@ -36,6 +37,7 @@ export default function BrandOptionsFilter() {
     }
     // Sayfa numarasını sıfırla
     setCurrentPage(1);
+    scrollToTop()
   };
 
   const filteredBrands = allBrands.filter((brand) =>
@@ -44,27 +46,32 @@ export default function BrandOptionsFilter() {
 
   return (
     <Stack spacing={1}>
-      <Typography variant="subtitle1">Brands</Typography>
-      <TextField
-        label="Search Brands"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <Paper elevation={3} variant="elevation" sx={{ height: 180, overflow: "auto" }}>
-        <FormGroup>
-          {filteredBrands.map((brand) => (
-            <FormControlLabel
-              key={brand}
-              control={
-                <Checkbox
-                  checked={selectedBrands?.includes(brand)}
-                  onChange={() => handleBrandChange(brand)}
+      <Typography variant="caption">Brands</Typography>
+
+      <Paper elevation={3} variant="elevation" sx={{ p: 2 }}>
+        <Stack spacing={1}>
+          <TextField
+            label="Search Brands"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <Stack sx={{ height: 180, overflow: "auto" }}>
+            <FormGroup>
+              {filteredBrands.map((brand) => (
+                <FormControlLabel
+                  key={brand}
+                  control={
+                    <Checkbox
+                      checked={selectedBrands?.includes(brand)}
+                      onChange={() => handleBrandChange(brand)}
+                    />
+                  }
+                  label={brand}
                 />
-              }
-              label={brand}
-            />
-          ))}
-        </FormGroup>
+              ))}
+            </FormGroup>
+          </Stack>
+        </Stack>
       </Paper>
     </Stack>
   );

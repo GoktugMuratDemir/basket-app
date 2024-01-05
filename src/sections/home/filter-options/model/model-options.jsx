@@ -9,9 +9,9 @@ import { useRenderPagination } from "../../../../context/pagination-context";
 import { useRenderProductData } from "../../../../context/product-context";
 
 export default function ModelOptionsFilter() {
-  const { resDataAllProduct, setResDataAllFilterProduct} = useRenderProductData();
-  const { setCurrentPage } = useRenderPagination();
-  
+  const { resDataAllProduct, setResDataAllFilterProduct } =
+    useRenderProductData();
+  const { setCurrentPage,scrollToTop } = useRenderPagination();
 
   const allModels = _.uniq(resDataAllProduct?.map((item) => item.model));
 
@@ -37,6 +37,7 @@ export default function ModelOptionsFilter() {
     }
     // Sayfa numarasını sıfırla
     setCurrentPage(1);
+    scrollToTop()
   };
 
   const filteredModels = allModels.filter((model) =>
@@ -45,27 +46,32 @@ export default function ModelOptionsFilter() {
 
   return (
     <Stack spacing={1}>
-      <Typography variant="subtitle1">Models</Typography>
-      <TextField
-        label="Search Models"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <Paper elevation={3} variant="elevation" sx={{ height: 180, overflow: "auto" }}>
-        <FormGroup>
-          {filteredModels.map((model) => (
-            <FormControlLabel
-              key={model}
-              control={
-                <Checkbox
-                  checked={selectedModels?.includes(model)}
-                  onChange={() => handleModelChange(model)}
+      <Typography variant="caption">Models</Typography>
+
+      <Paper elevation={3} variant="elevation" sx={{ p: 2 }}>
+        <Stack spacing={1}>
+          <TextField
+            label="Search Models"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <Stack sx={{ height: 180, overflow: "auto" }}>
+            <FormGroup>
+              {filteredModels.map((model) => (
+                <FormControlLabel
+                  key={model}
+                  control={
+                    <Checkbox
+                      checked={selectedModels?.includes(model)}
+                      onChange={() => handleModelChange(model)}
+                    />
+                  }
+                  label={model}
                 />
-              }
-              label={model}
-            />
-          ))}
-        </FormGroup>
+              ))}
+            </FormGroup>
+          </Stack>
+        </Stack>
       </Paper>
     </Stack>
   );

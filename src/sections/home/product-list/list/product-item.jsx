@@ -9,10 +9,23 @@ export default function ProductItem({ item }) {
   const { addItemToBasket } = useRenderBasket();
 
   const navigate = useNavigate();
-  
+
   return (
-    <Paper variant="elevation" elevation={3} sx={{ p: 2, cursor:"pointer" }} onClick={()=>navigate(`/detail/${item.id}`)}>
-      <Stack spacing={2} height="100%">
+    <Paper
+      variant="elevation"
+      elevation={3}
+      sx={{
+        p: 2,
+        cursor: "pointer",
+        height: 1,
+        "&:hover": {
+          background: "#eee",
+          transition: "all 0.5s ease",
+        },
+      }}
+      onClick={() => navigate(`/detail/${item.id}`)}
+    >
+      <Stack direction="column" justifyContent="space-between" height="100%">
         <Avatar
           alt={item.name}
           src={item.image}
@@ -22,16 +35,31 @@ export default function ProductItem({ item }) {
             height: 150,
           }}
         />
-        <Typography variant="subtitle1">{fDateTime(item.createdAt)}</Typography>
-        <Typography variant="subtitle1">{fTrCurrency(parseFloat(item.price))}</Typography>
-        <Typography variant="subtitle1">{item.name}</Typography>
+        <Typography variant="caption" height={35}>
+          {fDateTime(item.createdAt)}
+        </Typography>
+        <Typography
+          variant="caption"
+          height={35}
+        >{`${item.brand} - ${item.model}`}</Typography>
+        <Typography
+          variant="subtitle2"
+          color="#2A59FE"
+          fontWeight="bold"
+          height={35}
+        >
+          {fTrCurrency(parseFloat(item.price))}
+        </Typography>
+        <Typography variant="subtitle2" fontWeight="bold" height={35}>
+          {item.name}
+        </Typography>
         <Button
           variant="contained"
-          color="primary"
+          sx={{ background: "#2A59FE", fontSize: 16, mt:3 }}
           onClick={(event) => {
-            event.stopPropagation()
-            addItemToBasket(item.id)
-          } }
+            event.stopPropagation();
+            addItemToBasket(item.id);
+          }}
         >
           Add To Card
         </Button>

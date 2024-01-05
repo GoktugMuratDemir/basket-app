@@ -4,6 +4,7 @@ import {
   Paper,
   Radio,
   RadioGroup,
+  Stack,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -15,7 +16,7 @@ import { useRenderPagination } from "../../../../context/pagination-context";
 export default function SortByFilter() {
   const { resDataAllFilterProduct, setResDataAllFilterProduct } =
     useRenderProductData();
-    const { setCurrentPage } = useRenderPagination();
+    const { setCurrentPage,scrollToTop } = useRenderPagination();
 
   const [sortBy, setSortBy] = useState(radioGroup[0].value);
 
@@ -52,14 +53,16 @@ export default function SortByFilter() {
     if (event.target.value !== sortBy) {
       setSortBy(event.target.value);
       setCurrentPage(1);
+      scrollToTop()
     }
   };
   
 
   return (
     <FormControl>
-      <Typography variant="subtitle1">Short By</Typography>
-      <Paper elevation={3} variant="elevation">
+      <Stack spacing={1}>
+      <Typography variant="caption">Short By</Typography>
+      <Paper elevation={3} variant="elevation" sx={{p:2}}>
         <RadioGroup
           onChange={handleSortChange}
           aria-labelledby="demo-radio-buttons-group-label"
@@ -76,6 +79,7 @@ export default function SortByFilter() {
           ))}
         </RadioGroup>
       </Paper>
+      </Stack>
     </FormControl>
   );
 }

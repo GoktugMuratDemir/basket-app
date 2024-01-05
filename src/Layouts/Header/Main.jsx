@@ -1,24 +1,58 @@
-import { Stack, Typography } from "@mui/material";
+import { Avatar, Container, Stack, Typography } from "@mui/material";
 import React from "react";
 import SearchFilter from "./SearchFilter";
 import { useRenderBasket } from "../../context/basket-context";
 import { fTrCurrency } from "../../utils/fTrCurrency";
+import useResponsive from "../../hooks/useResponsive";
 
 export default function HeaderMain() {
-  const { totalBasketPrice} = useRenderBasket();
-  return (
-    <Stack direction="row" justifyContent="space-between">
-      <Stack direction="row">
-        <Typography variant="h4" sx={{ fontWeight: "700" }}>
-          Eteration
-        </Typography>
-        <SearchFilter />
-      </Stack>
+  const { totalBasketPrice } = useRenderBasket();
 
-      <Stack direction="row">
-        <Typography variant="h4">{fTrCurrency(totalBasketPrice)}</Typography>
-        <Typography variant="h4">Kerem</Typography>
-      </Stack>
+  const isMobile = useResponsive("down", "sm");
+
+  return (
+    <Stack sx={{ background: "#2A59FE" }}>
+      <Container maxWidth="xl">
+        <Stack
+          direction={isMobile ? "column" : "row"}
+          justifyContent="space-between"
+          alignItems="center"
+          spacing={isMobile && 2}
+          pb={isMobile && 2}
+        >
+          <Stack direction="row" alignItems="center" spacing={4}>
+            <Typography variant="h5" color="white" sx={{ fontWeight: "900" }}>
+              Eteration
+            </Typography>
+            <SearchFilter />
+          </Stack>
+
+          <Stack direction="row" alignItems="center" spacing={4}>
+            <Stack direction="row" alignItems="center" spacing={2}>
+              <Avatar
+                variant="square"
+                src="/assets/Portfeil.svg"
+                alt=""
+                sx={{ width: 24, height: 24 }}
+              />
+              <Typography variant="h6" color="white">
+                {fTrCurrency(totalBasketPrice)}
+              </Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <Avatar
+                variant="square"
+                src="/assets/Profile.svg"
+                alt=""
+                sx={{ width: 24, height: 24 }}
+              />
+              <Typography variant="h6" color="white">
+                Kerem
+              </Typography>
+            </Stack>
+          </Stack>
+        </Stack>
+      </Container>
     </Stack>
   );
 }

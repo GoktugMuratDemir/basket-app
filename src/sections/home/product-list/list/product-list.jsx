@@ -5,7 +5,6 @@ import ProductItem from "./product-item";
 import { useRenderPagination } from "../../../../context/pagination-context";
 import { useRenderProductData } from "../../../../context/product-context";
 
-
 export default function ProductList() {
   const { resDataAllFilterProduct } = useRenderProductData();
   const { currentPage, handleChangePage } = useRenderPagination();
@@ -22,22 +21,24 @@ export default function ProductList() {
     <Stack>
       <Grid container spacing={2}>
         {displayedProducts.map((item) => (
-          <Grid item xs={12} md={3} key={item.id}>
+          <Grid item xs={12} md={3} mb={4} key={item.id}>
             <ProductItem item={item} />
           </Grid>
         ))}
       </Grid>
 
-      <Pagination
-        count={pageCount}
-        page={currentPage}
-        onChange={handleChangePage}
-        color="primary"
-        size="large"
-        siblingCount={1} // İsteğe bağlı: Sayfalar arasındaki kardeş sayısı
-        boundaryCount={1} // İsteğe bağlı: İlk ve son sayfa arasındaki sayfaların sayısı
-        shape="circular" // İsteğe bağlı: "rounded" veya "circular"
-      />
+      <Stack alignItems="center" my={4}>
+        <Pagination
+          count={pageCount}
+          page={currentPage}
+          onChange={handleChangePage}
+          color="primary"
+          size="large"
+          siblingCount={1} // İsteğe bağlı: Sayfalar arasındaki kardeş sayısı
+          boundaryCount={1} // İsteğe bağlı: İlk ve son sayfa arasındaki sayfaların sayısı
+          shape="circular" // İsteğe bağlı: "rounded" veya "circular"
+        />
+      </Stack>
     </Stack>
   );
 }

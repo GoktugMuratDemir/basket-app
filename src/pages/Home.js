@@ -8,11 +8,11 @@ import ProductView from "../sections/home/product-list/view/product-view";
 export default function Home() {
   return (
     <>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={3}>
           <FilterOptionsView />
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={9}>
           <ProductView />
         </Grid>
       </Grid>
