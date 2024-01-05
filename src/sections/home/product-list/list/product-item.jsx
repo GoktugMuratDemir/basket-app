@@ -5,10 +5,13 @@ import { useRenderBasket } from "../../../../context/basket-context";
 import { useRenderPagination } from "../../../../context/pagination-context";
 import { fTrCurrency } from "../../../../utils/fTrCurrency";
 import { useNavigate } from "react-router-dom";
+import useResponsive from "../../../../hooks/useResponsive";
 
 export default function ProductItem({ item }) {
   const { addItemToBasket } = useRenderBasket();
-  const { scrollToTop } = useRenderPagination();
+  const { scrollToTop, scrollToBottom } = useRenderPagination();
+
+  const isMobile = useResponsive("down", "sm");
 
   const navigate = useNavigate();
 
@@ -57,11 +60,11 @@ export default function ProductItem({ item }) {
         </Typography>
         <Button
           variant="contained"
-          sx={{ background: "#2A59FE", fontSize: 16, mt:3 }}
+          sx={{ background: "#2A59FE", fontSize: 16, mt: 3 }}
           onClick={(event) => {
             event.stopPropagation();
             addItemToBasket(item.id);
-            scrollToTop()
+            isMobile ? scrollToBottom() : scrollToTop();
           }}
         >
           Add To Card

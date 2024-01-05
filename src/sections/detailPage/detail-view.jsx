@@ -6,12 +6,14 @@ import { useParams } from "react-router-dom";
 import { fTrCurrency } from "../../utils/fTrCurrency";
 import { useRenderBasket } from "../../context/basket-context";
 import { useRenderPagination } from "../../context/pagination-context";
+import useResponsive from "../../hooks/useResponsive";
 
 export default function DetailView() {
   const { id } = useParams();
   const { resDataAllProduct } = useRenderProductData();
   const { addItemToBasket } = useRenderBasket();
-  const { scrollToTop } = useRenderPagination();
+  const { scrollToTop,scrollToBottom } = useRenderPagination();
+  const isMobile = useResponsive("down", "sm");
 
   const selectedItem = _.find(resDataAllProduct, { id: id }) || null;
 
@@ -42,7 +44,8 @@ export default function DetailView() {
                 onClick={(event) => {
                   event.stopPropagation();
                   addItemToBasket(selectedItem.id);
-                  scrollToTop();
+                  
+                  isMobile ? scrollToBottom() : scrollToTop();
                 }}
               >
                 Add To Card

@@ -11,12 +11,15 @@ import React, { useEffect, useState } from "react";
 import _ from "lodash";
 import { useRenderProductData } from "../../../../context/product-context";
 import { useRenderPagination } from "../../../../context/pagination-context";
+import useResponsive from "../../../../hooks/useResponsive";
 
 
 export default function SortByFilter() {
   const { resDataAllFilterProduct, setResDataAllFilterProduct } =
     useRenderProductData();
     const { setCurrentPage,scrollToTop } = useRenderPagination();
+
+    const isMobile = useResponsive("down", "sm");
 
   const [sortBy, setSortBy] = useState(radioGroup[0].value);
 
@@ -53,7 +56,7 @@ export default function SortByFilter() {
     if (event.target.value !== sortBy) {
       setSortBy(event.target.value);
       setCurrentPage(1);
-      scrollToTop()
+      !isMobile && scrollToTop();
     }
   };
   

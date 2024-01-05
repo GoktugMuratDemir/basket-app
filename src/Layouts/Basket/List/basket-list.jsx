@@ -8,7 +8,7 @@ export default function BasketList() {
     useRenderBasket();
   return (
     <Paper elevation={3} variant="elevation" sx={{ p: 2 }}>
-      <Stack spacing={2}>
+      <Stack spacing={2} sx={{maxHeight: 300, overflow:"auto"}}>
         {basketItems.map((item) => (
           <Stack
             direction="row"

@@ -10,12 +10,20 @@ export function useRenderProductData() {
 }
 
 export function ProductRenderDataProvider({ children }) {
+  const [loading, setLoading] = useState(true);
   const [resDataAllProduct, setResDataAllProduct] = useState(null);
   const [resDataAllFilterProduct, setResDataAllFilterProduct] = useState(null);
 
   async function fetchAllDataProduct() {
-    const { data } = await WebServices.getAllProducts();
-    setResDataAllProduct(data);
+    try {
+      setLoading(true); // Veri çekimi başladığında loading'i true yap
+      const { data } = await WebServices.getAllProducts();
+      setResDataAllProduct(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false); // Veri çekimi tamamlandığında loading'i false yap
+    }
   }
   
   useEffect(() => {
@@ -29,6 +37,7 @@ export function ProductRenderDataProvider({ children }) {
   }, [resDataAllProduct]);
 
   const value = {
+    loading,
     resDataAllProduct,
     resDataAllFilterProduct,
     setResDataAllFilterProduct,

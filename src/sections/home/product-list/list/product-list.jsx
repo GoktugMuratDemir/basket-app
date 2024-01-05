@@ -4,10 +4,13 @@ import { Grid, Stack, Pagination } from "@mui/material";
 import ProductItem from "./product-item";
 import { useRenderPagination } from "../../../../context/pagination-context";
 import { useRenderProductData } from "../../../../context/product-context";
+import useResponsive from "../../../../hooks/useResponsive";
 
 export default function ProductList() {
   const { resDataAllFilterProduct } = useRenderProductData();
   const { currentPage, handleChangePage } = useRenderPagination();
+
+  const isMobile = useResponsive("down", "sm");
 
   const itemsPerPage = 12;
 
@@ -33,7 +36,7 @@ export default function ProductList() {
           page={currentPage}
           onChange={handleChangePage}
           color="primary"
-          size="large"
+          size={isMobile ? "small" : "large"}
           siblingCount={1} // İsteğe bağlı: Sayfalar arasındaki kardeş sayısı
           boundaryCount={1} // İsteğe bağlı: İlk ve son sayfa arasındaki sayfaların sayısı
           shape="circular" // İsteğe bağlı: "rounded" veya "circular"

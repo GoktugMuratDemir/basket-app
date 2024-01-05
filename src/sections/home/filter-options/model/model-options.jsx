@@ -7,11 +7,14 @@ import _ from "lodash";
 import { Paper, Stack, Typography, TextField } from "@mui/material";
 import { useRenderPagination } from "../../../../context/pagination-context";
 import { useRenderProductData } from "../../../../context/product-context";
+import useResponsive from "../../../../hooks/useResponsive";
 
 export default function ModelOptionsFilter() {
   const { resDataAllProduct, setResDataAllFilterProduct } =
     useRenderProductData();
-  const { setCurrentPage,scrollToTop } = useRenderPagination();
+  const { setCurrentPage,scrollToTop} = useRenderPagination();
+
+  const isMobile = useResponsive("down", "sm");
 
   const allModels = _.uniq(resDataAllProduct?.map((item) => item.model));
 
@@ -37,7 +40,7 @@ export default function ModelOptionsFilter() {
     }
     // Sayfa numarasını sıfırla
     setCurrentPage(1);
-    scrollToTop()
+    !isMobile && scrollToTop();
   };
 
   const filteredModels = allModels.filter((model) =>

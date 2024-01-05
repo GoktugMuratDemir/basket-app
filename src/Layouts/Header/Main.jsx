@@ -19,14 +19,14 @@ export default function HeaderMain() {
           direction={isMobile ? "column" : "row"}
           justifyContent="space-between"
           alignItems="center"
-          spacing={isMobile && 2}
+          spacing={isMobile ? 2 : 0}
           pb={isMobile && 2}
         >
           <Stack direction="row" alignItems="center" spacing={4}>
             <Typography
               variant="h5"
               color="white"
-              sx={{ fontWeight: "900", cursor:"pointer" }}
+              sx={{ fontWeight: "900", cursor: "pointer" }}
               onClick={() => navigate(`/`)}
             >
               Eteration

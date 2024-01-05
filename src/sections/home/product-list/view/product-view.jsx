@@ -1,21 +1,19 @@
 import React from "react";
-import { Skeleton } from "@mui/material";
 import ProductList from "../list/product-list";
 import { useRenderProductData } from "../../../../context/product-context";
+import ProductListLoading from "../../../../components/skeleton-templates/product-list-loading";
 
 export default function ProductView() {
-  const { resDataAllFilterProduct } = useRenderProductData();
-
-  // console.log(resDataAllFilterProduct);
+  const { loading, resDataAllFilterProduct } = useRenderProductData();
 
   return (
     <>
-      {resDataAllFilterProduct === null ? (
-        <Skeleton />
-      ) : resDataAllFilterProduct.length === 0 ? (
-        <h1>Ürün Bulunamadı</h1>
-      ) : (
+      {loading ? (
+        <ProductListLoading />
+      ) : resDataAllFilterProduct && resDataAllFilterProduct?.length > 0 ? (
         <ProductList />
+      ) : (
+        <h1>Ürün Bulunamadı</h1>
       )}
     </>
   );

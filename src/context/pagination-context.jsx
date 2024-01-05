@@ -25,8 +25,23 @@ export function PaginationProvider({ children }) {
     });
   };
 
+  const scrollToBottom = () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    if ('scrollBehavior' in document.documentElement.style) {
+      window.scrollTo({
+        top: scrollHeight,
+        behavior: "smooth",
+      });
+    } else {
+      window.scrollTo(0, scrollHeight);
+    }
+  };
+  
+  
+
   const value = {
     currentPage,
+    scrollToBottom,
     setCurrentPage,
     handleChangePage,
     scrollToTop
