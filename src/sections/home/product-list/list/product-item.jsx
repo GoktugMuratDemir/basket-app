@@ -2,11 +2,13 @@ import { Avatar, Paper, Stack, Typography, Button } from "@mui/material";
 import React from "react";
 import { fDateTime } from "../../../../utils/formatTime";
 import { useRenderBasket } from "../../../../context/basket-context";
+import { useRenderPagination } from "../../../../context/pagination-context";
 import { fTrCurrency } from "../../../../utils/fTrCurrency";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductItem({ item }) {
   const { addItemToBasket } = useRenderBasket();
+  const { scrollToTop } = useRenderPagination();
 
   const navigate = useNavigate();
 
@@ -59,6 +61,7 @@ export default function ProductItem({ item }) {
           onClick={(event) => {
             event.stopPropagation();
             addItemToBasket(item.id);
+            scrollToTop()
           }}
         >
           Add To Card
