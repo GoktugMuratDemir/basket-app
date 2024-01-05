@@ -35,14 +35,15 @@ export default function SortByFilter() {
         sortedData = _.sortBy(resDataAllFilterProduct, "createdAt").reverse();
         break;
       case "decreasing price":
-        sortedData = _.sortBy(resDataAllFilterProduct, ["price", "name"]).reverse();
+        sortedData = _.sortBy(resDataAllFilterProduct, (product) => parseFloat(product.price)).reverse();
         break;
       case "increasing price":
-        sortedData = _.sortBy(resDataAllFilterProduct, ["price", "name"]);
+        sortedData = _.sortBy(resDataAllFilterProduct, (product) => parseFloat(product.price));
         break;
       default:
         sortedData = resDataAllFilterProduct;
     }
+    
   
     // Update the state with the sorted data
     setResDataAllFilterProduct(sortedData);

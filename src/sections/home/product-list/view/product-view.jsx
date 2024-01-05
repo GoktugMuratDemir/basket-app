@@ -6,6 +6,8 @@ import ProductListLoading from "../../../../components/skeleton-templates/produc
 export default function ProductView() {
   const { loading, resDataAllFilterProduct } = useRenderProductData();
 
+  // console.log(resDataAllFilterProduct);
+
   return (
     <>
       {loading ? (

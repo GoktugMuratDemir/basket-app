@@ -18,10 +18,10 @@ export default function FilterLoading() {
         }}
       >
         <Skeleton variant="rounded" width="100%" height={50} />
-        {[0, 1, 2].map((item) => (
-          <Stack spacing={1} direction="row">
-            <Skeleton key={item} variant="rounded" width="20%" height={30} />
-            <Skeleton key={item} variant="rounded" width="80%" height={30} />
+        {[0, 1, 2].map((item, index) => (
+          <Stack spacing={1} direction="row" key={index}>
+            <Skeleton variant="rounded" width="20%" height={30} />
+            <Skeleton variant="rounded" width="80%" height={30} />
           </Stack>
         ))}
       </Stack>
