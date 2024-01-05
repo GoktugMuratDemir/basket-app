@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import _ from "lodash";
 import { useRenderProductData } from "./product-context";
 
@@ -13,6 +13,17 @@ export function useRenderBasket() {
 export function BasketProvider({ children }) {
   const { resDataAllProduct } = useRenderProductData();
   const [basketItems, setBasketItems] = useState([]);
+
+  useEffect(() => {
+    // Check if basketItems exist in localStorage
+    const storedBasketItems = localStorage.getItem('basketItems');
+
+    // If basketItems exist, you can do something with the data
+    if (storedBasketItems) {
+      const parsedBasketItems = JSON.parse(storedBasketItems);
+      setBasketItems(parsedBasketItems)
+    }
+  }, []);
 
   const addItemToBasket = (itemId) => {
     // Check if the item with the given id exists in resDataAllProduct

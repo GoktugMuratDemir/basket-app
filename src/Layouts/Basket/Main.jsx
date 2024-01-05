@@ -25,11 +25,10 @@ export default function BasketMain() {
               </Typography>
             </Paper>
           ) : (
-            <Stack spacing={2}>
-              <BasketList />
-              <Checkout />
-            </Stack>
+            <BasketList />
           )}
+
+          <Checkout />
         </Stack>
       )}
     </>

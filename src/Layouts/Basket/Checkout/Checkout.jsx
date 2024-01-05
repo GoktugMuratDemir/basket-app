@@ -4,7 +4,11 @@ import { Button, Paper, Stack, Typography } from "@mui/material";
 import { fTrCurrency } from "../../../utils/fTrCurrency";
 
 export default function Checkout() {
-  const { totalBasketPrice } = useRenderBasket();
+  const { basketItems, totalBasketPrice } = useRenderBasket();
+
+  const handleCheckout = () => {
+    localStorage.setItem("basketItems", JSON.stringify(basketItems));
+  };
 
   return (
     <Stack spacing={0.5}>
@@ -20,7 +24,11 @@ export default function Checkout() {
             </Typography>
           </Stack>
           <Stack>
-            <Button variant="contained" sx={{ background: "#2A59FE" }}>
+            <Button
+              variant="contained"
+              sx={{ background: "#2A59FE" }}
+              onClick={handleCheckout}
+            >
               Checkout
             </Button>
           </Stack>
