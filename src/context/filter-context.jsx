@@ -23,32 +23,21 @@ export function FilterProvider({ children }) {
   }, [selectedBrands, selectedModels]);
 
   const filterProducts = () => {
-    // Check if both selectedBrands and selectedModels arrays are not empty
-    if (selectedBrands.length > 0 && selectedModels.length > 0) {
-      // Use lodash intersection to find common elements in arrays
-      const filteredProducts = _.filter(
-        resDataAllProduct,
-        (product) =>
-          _.includes(selectedBrands, product.brand) &&
-          _.includes(selectedModels, product.model)
-      );
-      setResDataAllFilterProduct(filteredProducts);
-    } else if (selectedBrands.length > 0) {
-      // If only selectedBrands is selected
-      const filteredProducts = _.filter(resDataAllProduct, (product) =>
+    let filteredProducts = resDataAllProduct;
+
+    if (selectedBrands.length > 0) {
+      filteredProducts = _.filter(filteredProducts, (product) =>
         _.includes(selectedBrands, product.brand)
       );
-      setResDataAllFilterProduct(filteredProducts);
-    } else if (selectedModels.length > 0) {
-      // If only selectedModels is selected
-      const filteredProducts = _.filter(resDataAllProduct, (product) =>
+    }
+
+    if (selectedModels.length > 0) {
+      filteredProducts = _.filter(filteredProducts, (product) =>
         _.includes(selectedModels, product.model)
       );
-      setResDataAllFilterProduct(filteredProducts);
-    } else {
-      // If no filters selected, set the original data
-      setResDataAllFilterProduct(resDataAllProduct);
     }
+
+    setResDataAllFilterProduct(filteredProducts);
   };
 
   const value = {
