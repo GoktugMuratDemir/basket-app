@@ -1,5 +1,6 @@
 import { Avatar, Paper, Stack, Typography, Button } from '@mui/material'
 import React from 'react'
+import { fDateTime } from '../../../utils/formatTime'
 
 export default function ProductItem({item}) {
   return (
@@ -10,7 +11,7 @@ export default function ProductItem({item}) {
           width: 1,
           height: 150
         }} />
-        <Typography variant="subtitle1">{item.createdAt}</Typography>
+        <Typography variant="subtitle1">{fDateTime(item.createdAt)}</Typography>
         <Typography variant="subtitle1">{`${item.price} ₺`}</Typography>
         <Typography variant="subtitle1">{item.name}</Typography>
         <Button variant="contained" color="primary">

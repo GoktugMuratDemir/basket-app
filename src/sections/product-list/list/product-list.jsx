@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRenderProductData } from "../../../context/product-context";
 import { Grid, Stack, Pagination } from "@mui/material";
 import ProductItem from "./product-item";
+import { useRenderPagination } from "../../../context/pagination-context";
 
 export default function ProductList() {
   const { resDataAllFilterProduct } = useRenderProductData();
-  const [currentPage, setCurrentPage] = useState(1); // Başlangıç sayfa numarası
+  const { currentPage, handleChangePage } = useRenderPagination();
+
   const itemsPerPage = 12;
 
   const pageCount = Math.ceil(resDataAllFilterProduct.length / itemsPerPage);
-
-  const handleChangePage = (event, value) => {
-    setCurrentPage(value);
-  };
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -36,7 +34,7 @@ export default function ProductList() {
         size="large"
         siblingCount={1} // İsteğe bağlı: Sayfalar arasındaki kardeş sayısı
         boundaryCount={1} // İsteğe bağlı: İlk ve son sayfa arasındaki sayfaların sayısı
-        shape="rounded" // İsteğe bağlı: "rounded" veya "circular"
+        shape="circular" // İsteğe bağlı: "rounded" veya "circular"
       />
     </Stack>
   );

@@ -29,6 +29,7 @@ export function ProductRenderDataProvider({ children }) {
   }, [resDataAllProduct]);
 
   const value = {
+    resDataAllProduct,
     resDataAllFilterProduct,
     setResDataAllFilterProduct,
     fetchAllDataProduct,
