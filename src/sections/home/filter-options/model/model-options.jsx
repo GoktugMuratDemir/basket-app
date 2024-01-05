@@ -5,20 +5,18 @@ import FormGroup from "@mui/material/FormGroup";
 
 import _ from "lodash";
 import { Paper, Stack, Typography, TextField } from "@mui/material";
-import { useRenderPagination } from "../../../../context/pagination-context";
+
 import { useRenderProductData } from "../../../../context/product-context";
-import useResponsive from "../../../../hooks/useResponsive";
+
+import { useRenderFiltered } from "../../../../context/filter-context";
 
 export default function ModelOptionsFilter() {
-  const { resDataAllProduct, setResDataAllFilterProduct } =
-    useRenderProductData();
-  const { setCurrentPage,scrollToTop} = useRenderPagination();
+  const { resDataAllProduct } = useRenderProductData();
 
-  const isMobile = useResponsive("down", "sm");
+  const { selectedModels, setSelectedModels } = useRenderFiltered();
 
   const allModels = _.uniq(resDataAllProduct?.map((item) => item.model));
 
-  const [selectedModels, setSelectedModels] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleModelChange = (model) => {
@@ -27,20 +25,6 @@ export default function ModelOptionsFilter() {
       : [...selectedModels, model];
 
     setSelectedModels(updatedModels);
-
-    if (updatedModels.length === 0) {
-      // Hiçbir seçenek seçilmediğinde, orijinal veriyi geri yükle
-      setResDataAllFilterProduct(resDataAllProduct);
-    } else {
-      // Seçilen modellere göre filtreleme yap
-      const filteredProducts = resDataAllProduct.filter((product) =>
-        updatedModels.includes(product.model)
-      );
-      setResDataAllFilterProduct(filteredProducts);
-    }
-    // Sayfa numarasını sıfırla
-    setCurrentPage(1);
-    !isMobile && scrollToTop();
   };
 
   const filteredModels = allModels.filter((model) =>

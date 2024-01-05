@@ -5,7 +5,8 @@ import LayoutMain from "./Layouts/Main";
 import { ProductRenderDataProvider } from "./context/product-context";
 import { PaginationProvider } from "./context/pagination-context";
 import { BasketProvider } from "./context/basket-context";
-import { SnackbarProvider } from './components/snackbar';
+import { SnackbarProvider } from "./components/snackbar";
+import { FilterProvider } from "./context/filter-context";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <PaginationProvider>
         <BasketProvider>
           <SnackbarProvider>
-
-          <LayoutMain />
+            <FilterProvider>
+              <LayoutMain />
+            </FilterProvider>
           </SnackbarProvider>
         </BasketProvider>
       </PaginationProvider>

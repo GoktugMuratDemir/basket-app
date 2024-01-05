@@ -5,20 +5,16 @@ import FormGroup from "@mui/material/FormGroup";
 
 import _ from "lodash";
 import { Paper, Stack, Typography, TextField } from "@mui/material";
-import { useRenderPagination } from "../../../../context/pagination-context";
 import { useRenderProductData } from "../../../../context/product-context";
-import useResponsive from "../../../../hooks/useResponsive";
+import { useRenderFiltered } from "../../../../context/filter-context";
 
 export default function BrandOptionsFilter() {
-  const { resDataAllProduct, setResDataAllFilterProduct } =
-    useRenderProductData();
-  const { setCurrentPage,scrollToTop } = useRenderPagination();
+  const { resDataAllProduct } = useRenderProductData();
 
-  const isMobile = useResponsive("down", "sm");
+  const { selectedBrands, setSelectedBrands } = useRenderFiltered();
 
   const allBrands = _.uniq(resDataAllProduct?.map((item) => item.brand));
 
-  const [selectedBrands, setSelectedBrands] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleBrandChange = (brand) => {
@@ -27,20 +23,6 @@ export default function BrandOptionsFilter() {
       : [...selectedBrands, brand];
 
     setSelectedBrands(updatedBrands);
-
-    if (updatedBrands.length === 0) {
-      // Hiçbir seçenek seçilmediğinde, orijinal veriyi geri yükle
-      setResDataAllFilterProduct(resDataAllProduct);
-    } else {
-      // Seçilen markalara göre filtreleme yap
-      const filteredProducts = resDataAllProduct.filter((product) =>
-        updatedBrands.includes(product.brand)
-      );
-      setResDataAllFilterProduct(filteredProducts);
-    }
-    // Sayfa numarasını sıfırla
-    setCurrentPage(1);
-    !isMobile && scrollToTop();
   };
 
   const filteredBrands = allBrands.filter((brand) =>
