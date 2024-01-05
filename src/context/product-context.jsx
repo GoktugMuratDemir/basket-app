@@ -14,27 +14,24 @@ export function ProductRenderDataProvider({ children }) {
   const [resDataAllProduct, setResDataAllProduct] = useState(null);
   const [resDataAllFilterProduct, setResDataAllFilterProduct] = useState(null);
 
+  // console.log(resDataAllProduct);
+
   async function fetchAllDataProduct() {
     try {
       setLoading(true); // Veri çekimi başladığında loading'i true yap
       const { data } = await WebServices.getAllProducts();
       setResDataAllProduct(data);
+      setResDataAllFilterProduct(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
       setLoading(false); // Veri çekimi tamamlandığında loading'i false yap
     }
   }
-  
+
   useEffect(() => {
     fetchAllDataProduct();
   }, []);
-
-  useEffect(() => {
-    if (resDataAllProduct) {
-      setResDataAllFilterProduct(resDataAllProduct);
-    }
-  }, [resDataAllProduct]);
 
   const value = {
     loading,
