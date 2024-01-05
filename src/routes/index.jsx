@@ -1,18 +1,40 @@
-// src/routes/index.js
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Home from '../pages/Home';
-import About from '../pages/DetailPage';
-import NotFound404 from '../pages/NotFound404';
+import { Outlet } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
-function AppRoutes() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/detail/:id" element={<About />} />
-      <Route path="*" element={<NotFound404 />} />
-    </Routes>
-  );
-}
+import Home from "../pages/Home";
+import DetailPage from "../pages/DetailPage";
+import NotFound404 from "../pages/NotFound404";
+import LayoutMain from "../Layouts/Main";
 
-export default AppRoutes;
+const routes = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <>
+        <Outlet />
+      </>
+    ),
+    children: [
+      {
+        path: "/",
+        element: <LayoutMain />,
+        children: [
+          {
+            index: true,
+            element: <Home />,
+          },
+          {
+            path: "/detail/:id",
+            element: <DetailPage />,
+          },
+        ],
+      },
+      {
+        path: "*",
+        element: <NotFound404 />,
+      },
+    ],
+  },
+]);
+
+export default routes;

@@ -1,12 +1,14 @@
 // src/App.js
 import React from "react";
 import "./App.css";
-import LayoutMain from "./Layouts/Main";
+
 import { ProductRenderDataProvider } from "./context/product-context";
 import { PaginationProvider } from "./context/pagination-context";
 import { BasketProvider } from "./context/basket-context";
 import { SnackbarProvider } from "./components/snackbar";
 import { FilterProvider } from "./context/filter-context";
+import { RouterProvider } from "react-router-dom";
+import routes from "./routes";
 
 function App() {
   return (
@@ -15,7 +17,7 @@ function App() {
         <BasketProvider>
           <SnackbarProvider>
             <FilterProvider>
-              <LayoutMain />
+              <RouterProvider router={routes} />
             </FilterProvider>
           </SnackbarProvider>
         </BasketProvider>
