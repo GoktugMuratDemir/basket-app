@@ -14,6 +14,7 @@ export default function BasketList() {
             direction="row"
             justifyContent="space-between"
             alignContent="center"
+            key={item.id}
             spacing={1}
           >
             <Stack alignItems="flex-start">

@@ -16,18 +16,19 @@ export default function BasketMain() {
       {loading ? (
         <FilterLoading />
       ) : (
-        <Stack spacing={0.5} sx={{ mb: isMobile ? 10 : 0 }}>
-          <Typography variant="caption">Cart</Typography>
-          {basketItems.length === 0 ? (
-            <Paper elevation={3} variant="elevation" sx={{ p: 2 }}>
-              <Typography variant="subtitle1" fontWeight="bold">
-                Empty Basket
-              </Typography>
-            </Paper>
-          ) : (
-            <BasketList />
-          )}
-
+        <Stack spacing={2} sx={{ mb: isMobile ? 10 : 0 }}>
+          <Stack spacing={0.5}>
+            <Typography variant="caption">Cart</Typography>
+            {basketItems.length === 0 ? (
+              <Paper elevation={3} variant="elevation" sx={{ p: 2 }}>
+                <Typography variant="subtitle1" fontWeight="bold">
+                  Empty Basket
+                </Typography>
+              </Paper>
+            ) : (
+              <BasketList />
+            )}
+          </Stack>
           <Checkout />
         </Stack>
       )}
