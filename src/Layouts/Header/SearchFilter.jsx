@@ -50,7 +50,7 @@ export default function SearchFilter() {
             <React.Fragment>
               <Avatar
                 variant="square"
-                src="/assets/search.svg"
+                src="/assets/Search.svg"
                 alt=""
                 sx={{ width: 24, height: 24, mx: 2 }}
               />
