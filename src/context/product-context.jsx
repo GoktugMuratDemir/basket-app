@@ -11,21 +11,26 @@ export function useRenderProductData() {
 
 export function ProductRenderDataProvider({ children }) {
   const [resDataAllProduct, setResDataAllProduct] = useState(null);
+  const [resDataAllFilterProduct, setResDataAllFilterProduct] = useState(null);
 
   async function fetchAllDataProduct() {
-    const {data} = await WebServices.getAllProducts();
+    const { data } = await WebServices.getAllProducts();
     setResDataAllProduct(data);
   }
-
-//   console.log(resDataAllProduct);
-
+  
   useEffect(() => {
     fetchAllDataProduct();
   }, []);
 
+  useEffect(() => {
+    if (resDataAllProduct) {
+      setResDataAllFilterProduct(resDataAllProduct);
+    }
+  }, [resDataAllProduct]);
+
   const value = {
-    resDataAllProduct,
-    setResDataAllProduct,
+    resDataAllFilterProduct,
+    setResDataAllFilterProduct,
     fetchAllDataProduct,
   };
 
