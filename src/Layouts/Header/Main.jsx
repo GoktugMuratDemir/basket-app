@@ -4,11 +4,13 @@ import SearchFilter from "./SearchFilter";
 import { useRenderBasket } from "../../context/basket-context";
 import { fTrCurrency } from "../../utils/fTrCurrency";
 import useResponsive from "../../hooks/useResponsive";
+import { useNavigate } from "react-router-dom";
 
 export default function HeaderMain() {
   const { totalBasketPrice } = useRenderBasket();
 
   const isMobile = useResponsive("down", "sm");
+  const navigate = useNavigate();
 
   return (
     <Stack sx={{ background: "#2A59FE" }}>
@@ -21,7 +23,12 @@ export default function HeaderMain() {
           pb={isMobile && 2}
         >
           <Stack direction="row" alignItems="center" spacing={4}>
-            <Typography variant="h5" color="white" sx={{ fontWeight: "900" }}>
+            <Typography
+              variant="h5"
+              color="white"
+              sx={{ fontWeight: "900", cursor:"pointer" }}
+              onClick={() => navigate(`/`)}
+            >
               Eteration
             </Typography>
             <SearchFilter />
