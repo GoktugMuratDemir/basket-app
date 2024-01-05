@@ -1,8 +1,10 @@
 import React from "react";
-import { useRenderProductData } from "../../../context/product-context";
+
 import { Grid, Stack, Pagination } from "@mui/material";
 import ProductItem from "./product-item";
-import { useRenderPagination } from "../../../context/pagination-context";
+import { useRenderPagination } from "../../../../context/pagination-context";
+import { useRenderProductData } from "../../../../context/product-context";
+
 
 export default function ProductList() {
   const { resDataAllFilterProduct } = useRenderProductData();

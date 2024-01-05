@@ -4,12 +4,15 @@ import "./App.css";
 import LayoutMain from "./Layouts/Main";
 import { ProductRenderDataProvider } from "./context/product-context";
 import { PaginationProvider } from "./context/pagination-context";
+import { BasketProvider } from "./context/basket-context";
 
 function App() {
   return (
     <ProductRenderDataProvider>
       <PaginationProvider>
-        <LayoutMain />
+        <BasketProvider>
+          <LayoutMain />
+        </BasketProvider>
       </PaginationProvider>
     </ProductRenderDataProvider>
   );

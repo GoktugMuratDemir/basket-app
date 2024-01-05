@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material";
 import React from "react";
 
-import FilterOptionsView from "../sections/filter-options/filter-options";
-import ProductView from "../sections/product-list/view/product-view";
+import FilterOptionsView from "../sections/home/filter-options/filter-options";
+import ProductView from "../sections/home/product-list/view/product-view";
 
 
 export default function Home() {

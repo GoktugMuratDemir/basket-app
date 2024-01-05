@@ -8,8 +8,9 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import _ from "lodash";
-import { useRenderProductData } from "../../../context/product-context";
-import { useRenderPagination } from "../../../context/pagination-context";
+import { useRenderProductData } from "../../../../context/product-context";
+import { useRenderPagination } from "../../../../context/pagination-context";
+
 
 export default function SortByFilter() {
   const { resDataAllFilterProduct, setResDataAllFilterProduct } =

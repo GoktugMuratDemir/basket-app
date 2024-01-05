@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
-import { useRenderProductData } from "../../../context/product-context";
-import { useRenderPagination } from "../../../context/pagination-context";
+
 import _ from "lodash";
 import { Paper, Stack, Typography, TextField } from "@mui/material";
+import { useRenderPagination } from "../../../../context/pagination-context";
+import { useRenderProductData } from "../../../../context/product-context";
 
 export default function ModelOptionsFilter() {
   const { resDataAllProduct, setResDataAllFilterProduct} = useRenderProductData();
