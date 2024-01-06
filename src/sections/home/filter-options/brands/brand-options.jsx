@@ -41,7 +41,13 @@ export default function BrandOptionsFilter() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <Stack sx={{ height: 180, overflow: "auto" }}>
-            <FormGroup>
+            <FormGroup
+              sx={{
+                "& .MuiFormControlLabel-label": {
+                  fontSize: 14,
+                },
+              }}
+            >
               {filteredBrands.map((brand) => (
                 <FormControlLabel
                   key={brand}

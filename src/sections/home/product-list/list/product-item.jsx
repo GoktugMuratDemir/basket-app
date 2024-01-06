@@ -40,13 +40,10 @@ export default function ProductItem({ item }) {
             height: 150,
           }}
         />
-        <Typography variant="caption" height={35}>
-          {fDateTime(item.createdAt)}
-        </Typography>
-        <Typography
-          variant="caption"
-          height={35}
-        >{`${item.brand} - ${item.model}`}</Typography>
+        <Stack height={60}>
+          <Typography variant="caption">{fDateTime(item.createdAt)}</Typography>
+          <Typography variant="caption">{`${item.brand} - ${item.model}`}</Typography>
+        </Stack>
         <Typography
           variant="subtitle2"
           color="#2A59FE"
@@ -60,7 +57,7 @@ export default function ProductItem({ item }) {
         </Typography>
         <Button
           variant="contained"
-          sx={{ background: "#2A59FE", fontSize: 16, mt: 3 }}
+          sx={{ background: "#2A59FE", fontSize: 16, mt: 1 }}
           onClick={(event) => {
             event.stopPropagation();
             addItemToBasket(item.id);

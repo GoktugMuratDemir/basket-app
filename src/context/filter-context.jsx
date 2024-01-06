@@ -3,6 +3,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useRenderProductData } from "./product-context";
 import _ from "lodash";
+import { useRenderPagination } from "./pagination-context";
+import useResponsive from "../hooks/useResponsive";
 
 const RenderDataContext = createContext();
 
@@ -13,6 +15,8 @@ export function useRenderFiltered() {
 export function FilterProvider({ children }) {
   const { resDataAllProduct, setResDataAllFilterProduct } =
     useRenderProductData();
+  const { setCurrentPage, scrollToTop } = useRenderPagination();
+  const isMobile = useResponsive("down", "sm");
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedModels, setSelectedModels] = useState([]);
 
@@ -49,6 +53,9 @@ export function FilterProvider({ children }) {
       // If no filters selected, set the original data
       setResDataAllFilterProduct(resDataAllProduct);
     }
+
+    setCurrentPage(1);
+    !isMobile && scrollToTop();
   };
 
   const value = {

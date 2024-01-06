@@ -12,6 +12,8 @@ export default function ProductList() {
 
   const isMobile = useResponsive("down", "sm");
 
+  console.log(resDataAllFilterProduct);
+
   const itemsPerPage = 12;
 
   const pageCount = Math.ceil(resDataAllFilterProduct.length / itemsPerPage);
@@ -37,8 +39,8 @@ export default function ProductList() {
           onChange={handleChangePage}
           color="primary"
           size={isMobile ? "small" : "large"}
-          siblingCount={1} // İsteğe bağlı: Sayfalar arasındaki kardeş sayısı
-          boundaryCount={1} // İsteğe bağlı: İlk ve son sayfa arasındaki sayfaların sayısı
+          // siblingCount={3} // İsteğe bağlı: Sayfalar arasındaki kardeş sayısı
+          // boundaryCount={1} // İsteğe bağlı: İlk ve son sayfa arasındaki sayfaların sayısı
           shape="circular" // İsteğe bağlı: "rounded" veya "circular"
         />
       </Stack>

@@ -43,7 +43,13 @@ export default function ModelOptionsFilter() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <Stack sx={{ height: 180, overflow: "auto" }}>
-            <FormGroup>
+            <FormGroup
+              sx={{
+                "& .MuiFormControlLabel-label": {
+                  fontSize: 14,
+                },
+              }}
+            >
               {filteredModels.map((model) => (
                 <FormControlLabel
                   key={model}
