@@ -11,7 +11,7 @@ export default function Checkout() {
 
   const handleCheckout = () => {
     localStorage.setItem("basketItems", JSON.stringify(basketItems));
-    enqueueSnackbar('İşlem Başarılı');
+    enqueueSnackbar("İşlem Başarılı");
   };
 
   return (
@@ -30,10 +30,12 @@ export default function Checkout() {
           <Stack>
             <Button
               variant="contained"
-              sx={{ background: "#2A59FE" }}
+              sx={{ background: "#2A59FE", textTransform: "none" }}
               onClick={handleCheckout}
             >
-              Checkout
+              <Typography variant="body1" color="white">
+                Checkout
+              </Typography>
             </Button>
           </Stack>
         </Stack>

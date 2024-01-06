@@ -48,23 +48,36 @@ export default function ProductItem({ item }) {
           variant="subtitle2"
           color="#2A59FE"
           fontWeight="bold"
-          height={35}
+          height={30}
         >
           {fTrCurrency(parseFloat(item.price))}
         </Typography>
-        <Typography variant="subtitle2" fontWeight="bold" height={35}>
+        <Typography
+          variant="subtitle2"
+          fontWeight="bold"
+          height={42}
+          sx={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 2,
+          }}
+        >
           {item.name}
         </Typography>
         <Button
           variant="contained"
-          sx={{ background: "#2A59FE", fontSize: 16, mt: 1 }}
+          sx={{ background: "#2A59FE", textTransform: "none" }}
           onClick={(event) => {
             event.stopPropagation();
             addItemToBasket(item.id);
             isMobile ? scrollToBottom() : scrollToTop();
           }}
         >
-          Add To Card
+          <Typography variant="body1" color="white">
+            Add To Cart
+          </Typography>
         </Button>
       </Stack>
     </Paper>

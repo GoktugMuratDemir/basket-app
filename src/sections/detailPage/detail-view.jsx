@@ -12,7 +12,7 @@ export default function DetailView() {
   const { id } = useParams();
   const { resDataAllProduct } = useRenderProductData();
   const { addItemToBasket } = useRenderBasket();
-  const { scrollToTop,scrollToBottom } = useRenderPagination();
+  const { scrollToTop, scrollToBottom } = useRenderPagination();
   const isMobile = useResponsive("down", "sm");
 
   const selectedItem = _.find(resDataAllProduct, { id: id }) || null;
@@ -40,15 +40,16 @@ export default function DetailView() {
             <Stack spacing={2}>
               <Button
                 variant="contained"
-                sx={{ background: "#2A59FE", fontSize: 16 }}
+                sx={{ background: "#2A59FE", textTransform: "none" }}
                 onClick={(event) => {
                   event.stopPropagation();
                   addItemToBasket(selectedItem.id);
-                  
                   isMobile ? scrollToBottom() : scrollToTop();
                 }}
               >
-                Add To Card
+                <Typography variant="body1" color="white">
+                  Add To Cart
+                </Typography>
               </Button>
 
               <Typography variant="body1">
