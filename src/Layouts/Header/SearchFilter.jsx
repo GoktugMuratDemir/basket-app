@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { useRenderProductData } from "../../context/product-context";
 import { Avatar } from "@mui/material";
+import { useRenderFiltered } from "../../context/filter-context";
+import { useRenderPagination } from "../../context/pagination-context";
 
 export default function SearchFilter() {
   const {
@@ -9,6 +11,10 @@ export default function SearchFilter() {
     setResDataAllFilterProduct,
     resDataAllProduct,
   } = useRenderProductData();
+
+  const { setSelectedBrands, setSelectedModels } = useRenderFiltered();
+  const { setCurrentPage } = useRenderPagination();
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearchChange = (event) => {
@@ -19,6 +25,8 @@ export default function SearchFilter() {
     if (value.trim() === "") {
       // If empty, set the original products back
       setResDataAllFilterProduct(resDataAllProduct);
+      setSelectedModels([]);
+      setSelectedBrands([]);
     } else {
       // If not empty, filter products based on the search term (product name)
       const filteredProducts = resDataAllFilterProduct.filter((product) =>
@@ -28,6 +36,8 @@ export default function SearchFilter() {
       // Update the filtered products in the context
       setResDataAllFilterProduct(filteredProducts);
     }
+
+    setCurrentPage(1);
   };
 
   return (
@@ -41,11 +51,9 @@ export default function SearchFilter() {
         margin="normal"
         placeholder="Search"
         sx={{
-          background:"#FFFFFF",
-
+          background: "#FFFFFF",
         }}
         InputProps={{
-
           startAdornment: (
             <React.Fragment>
               <Avatar
