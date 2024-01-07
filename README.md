@@ -8,7 +8,7 @@ You can access the live preview of the project by clicking [this link](https://f
 
 # Home Page
 
-<img src="./docs/home-page2.png" />
+<img src="./docs/home-page-2.png" />
 
 # Detail Page
 
