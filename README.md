@@ -1,6 +1,10 @@
-# Live Url
+# Basic Basket App
 
-https://front-end-case-study-1.vercel.app/
+This project is a simple cart application with React. The application allows users to add products to the cart, view their cart and empty their cart.
+
+## Live Preview
+
+You can access the live preview of the project by clicking [this link](https://front-end-case-study-1.vercel.app/).
 
 # Getting Started with Create React App
 
