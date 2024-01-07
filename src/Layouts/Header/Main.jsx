@@ -54,7 +54,7 @@ export default function HeaderMain() {
                 sx={{ width: 24, height: 24 }}
               />
               <Typography variant="h6" color="white">
-                Göktuğ
+                Goktug
               </Typography>
             </Stack>
           </Stack>
