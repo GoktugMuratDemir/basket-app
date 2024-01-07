@@ -44,14 +44,19 @@ export default function SearchFilter() {
     <div>
       <TextField
         // label="Search by Name"
-        variant="outlined"
+        variant="standard"
         value={searchTerm}
         onChange={handleSearchChange}
         fullWidth
         margin="normal"
         placeholder="Search"
         sx={{
+          mt:1,
           background: "#FFFFFF",
+          '& .MuiInputBase-input ': {
+            px:0,
+            py:1
+          }
         }}
         InputProps={{
           startAdornment: (
@@ -60,7 +65,7 @@ export default function SearchFilter() {
                 variant="square"
                 src="/assets/Search.svg"
                 alt=""
-                sx={{ width: 24, height: 24, mx: 2 }}
+                sx={{ width: 18, height: 18, mx: 2 }}
               />
             </React.Fragment>
           ),
