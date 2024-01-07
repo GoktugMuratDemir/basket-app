@@ -11,6 +11,7 @@ export function useRenderProductData() {
 
 export function ProductRenderDataProvider({ children }) {
   const [loading, setLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [resDataAllProduct, setResDataAllProduct] = useState(null);
   const [resDataAllFilterProduct, setResDataAllFilterProduct] = useState(null);
 
@@ -20,14 +21,21 @@ export function ProductRenderDataProvider({ children }) {
     try {
       setLoading(true); // Veri çekimi başladığında loading'i true yap
       const { data } = await WebServices.getAllProducts();
-      setResDataAllProduct(data);
-      setResDataAllFilterProduct(data);
+  
+      if (data) {
+        setResDataAllProduct(data);
+        setResDataAllFilterProduct(data);
+        setIsError(false);
+      } else {
+        setIsError(true);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      setLoading(false); // Veri çekimi tamamlandığında loading'i false yap
+      setLoading(false);
     }
   }
+  
 
   useEffect(() => {
     fetchAllDataProduct();
@@ -35,6 +43,7 @@ export function ProductRenderDataProvider({ children }) {
 
   const value = {
     loading,
+    isError,
     resDataAllProduct,
     resDataAllFilterProduct,
     setResDataAllFilterProduct,

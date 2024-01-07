@@ -6,21 +6,27 @@ import ModelOptionsFilter from "./model/model-options";
 import FilterLoading from "../../../components/skeleton-templates/filter-loading";
 import { useRenderProductData } from "../../../context/product-context";
 import useResponsive from "../../../hooks/useResponsive";
+import SomethingWentWrong from "../../../components/error-templates/SometingWentWrong";
 
 export default function FilterOptionsView() {
-  const { loading } = useRenderProductData();
+  const { loading, isError } = useRenderProductData();
   const isMobile = useResponsive("down", "sm");
+
   return (
     <Stack spacing={3} mb={!isMobile && 5}>
-      {loading ? (
+      <SortByFilter />
+      {isError ? (
         <>
-          <FilterLoading />
+          <SomethingWentWrong />
+          <SomethingWentWrong />
+        </>
+      ) : loading ? (
+        <>
           <FilterLoading />
           <FilterLoading />
         </>
       ) : (
         <>
-          <SortByFilter />
           <BrandOptionsFilter />
           <ModelOptionsFilter />
         </>
