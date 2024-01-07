@@ -2,9 +2,17 @@
 
 This project is a simple cart application with React. The application allows users to add products to the cart, view their cart and empty their cart.
 
-## Live Preview
+# Live Preview
 
 You can access the live preview of the project by clicking [this link](https://front-end-case-study-1.vercel.app/).
+
+# Home Page
+
+<img src="./docs/home-page.png" />
+
+# Detail Page
+
+<img src="./docs/detail-page.png" />
 
 # Getting Started with Create React App
 
