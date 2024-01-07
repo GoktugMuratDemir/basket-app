@@ -1,3 +1,20 @@
 * {
   font-family: "Montserrat", sans-serif !important;
 }
+
+/* Scroll barlar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Scroll indicator */
+::-webkit-scrollbar-thumb {
+  background-color: #C4C4C4; /* Renk */
+  border-radius: 5px; /* Kenar yarıçapı */
+}
+
+/* Scroll track */
+::-webkit-scrollbar-track {
+  background-color: #ecf0f1; /* Arka plan rengi */
+}
+
