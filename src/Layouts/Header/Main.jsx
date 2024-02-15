@@ -29,7 +29,7 @@ export default function HeaderMain() {
               sx={{ fontWeight: "900", cursor: "pointer" }}
               onClick={() => navigate(`/`)}
             >
-              Eteration
+              Case Study
             </Typography>
             <SearchFilter />
           </Stack>
